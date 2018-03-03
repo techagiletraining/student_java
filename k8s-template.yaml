@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v1
+apiVersion: apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: student-java-{{GIT_BRANCH_NAME}}
@@ -16,6 +16,7 @@ spec:
     metadata:
       labels:
         app: student-java
+        branch: {{GIT_BRANCH_NAME}}
     spec:
       containers:
       - name: student-java
