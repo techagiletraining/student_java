@@ -1,5 +1,5 @@
 ---
-apiVersion: apiVersion: apps/v1beta2
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: student-java-{{GIT_BRANCH_NAME}}
