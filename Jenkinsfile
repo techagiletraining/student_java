@@ -81,7 +81,7 @@ volumes: [
 
 		stage('Integration Test'){
 			container('gradle') {
-				sh 'echo publishing artifact...'
+				sh 'echo testing deployment...'
 			}
 		}
 	}
