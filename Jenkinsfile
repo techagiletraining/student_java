@@ -56,21 +56,26 @@ volumes: [
 
 		stage('Build Docker Image'){
 			container('dgcloud') {
-				sh 'echo publishing artifact...'
+				sh 'echo building image...'
 				sh "docker build -t ${IMAGE_NAME} --build-arg JAR_FILE=${ARTIFACT} ."
 			}
 		}
 
 		stage('Publish Docker Image'){
 			container('dgcloud') {
-				sh 'echo publishing artifact...'
+				sh 'echo publishing image...'
 				sh "gcloud docker -- push ${IMAGE_NAME}"
 			}
 		}
 
 		stage('Deploy'){
 			container('dgcloud') {
-				sh 'echo publishing artifact...'
+				sh 'echo deploying image...'
+				sh """sed 's|{{IMAGE_NAME}}|${IMAGE_NAME}|' k8s-template.yaml | \
+        sed 's/{{GIT_BRANCH_NAME}}/${GIT_BRANCH_NAME}/' > deployment.yaml
+        """
+        sh "cat deployment.yaml"
+        sh "kubectl apply -f deployment.yaml --validate=false"
 			}
 		}
 

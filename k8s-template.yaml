@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: student-java
+  labels:
+    app: student-java
+    branch: {{GIT_BRANCH_NAME}}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: student-java
+  template:
+    metadata:
+      labels:
+        app: student-java
+    spec:
+      loadbalancer:
+        ports:
+        - port: 80
+          targetPort: 8080
+      containers:
+      - name: student-java
+        image: {{IMAGE_NAME}}
+        ports:
+        - containerPort: 8080
