@@ -2,7 +2,6 @@ def label = "jenkins-agent-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
-  containerTemplate(name: 'gcloud', image: 'google/cloud-sdk', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'dgcloud', image: 'paulwoelfel/docker-gcloud', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'gradle', image: 'dodb/jenkins-java-gradle-docker-slave', command: 'cat', ttyEnabled: true)
 ],
@@ -80,8 +79,9 @@ volumes: [
 		}
 
 		stage('Integration Test'){
-			container('gradle') {
+			container('dgcloud') {
 				sh 'echo testing deployment...'
+				//sh "./newman/run.sh ${HOST}"
 			}
 		}
 	}

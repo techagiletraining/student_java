@@ -16,6 +16,7 @@ spec:
     metadata:
       labels:
         app: student-java
+        branch: {{GIT_BRANCH_NAME}}
     spec:
       containers:
       - name: student-java
@@ -34,7 +35,7 @@ spec:
   selector:
     app: student-java
     branch: {{GIT_BRANCH_NAME}}
-    type: LoadBalancer
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 80
