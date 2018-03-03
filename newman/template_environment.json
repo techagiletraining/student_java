@@ -1,0 +1,16 @@
+{
+  "id": "9c360eb9-6610-3e5a-3953-3cc375f1103c",
+  "name": "student-java-template",
+  "values": [
+    {
+      "key": "host",
+      "value": "HOST_TEMPLATE",
+      "enabled": true,
+      "type": "text"
+    }
+  ],
+  "timestamp": 1520105865848,
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2018-03-03T20:01:32.152Z",
+  "_postman_exported_using": "Postman/4.9.3"
+}
