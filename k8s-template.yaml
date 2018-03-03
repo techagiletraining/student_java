@@ -35,7 +35,7 @@ spec:
   selector:
     app: student-java
     branch: {{GIT_BRANCH_NAME}}
-    type: LoadBalancer
+  type: LoadBalancer
   ports:
   - protocol: TCP
     port: 80
