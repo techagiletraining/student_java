@@ -1,0 +1,12 @@
+FROM java:8
+
+ENV PORT 8080
+ENV APP_HOME /app
+ENV LIFECYCLE development
+EXPOSE 8080
+ARG JAR_FILE
+COPY ${JAR_FILE} $APP_HOME/app.jar
+
+WORKDIR /usr/bin
+
+CMD java -jar $APP_HOME/app.jar
