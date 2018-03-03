@@ -21,7 +21,7 @@ volumes: [
 			env.ARTIFACT = "app-${GIT_BRANCH_NAME}-${ts}.jar"
 			env.IMAGE_NAME = "${DOCKER_REPO}/${PROJECT_ID}/${APP_NAME}/${GIT_BRANCH_NAME}:${ts}"
 
-			container('gcloud') {
+			container('dgcloud') {
 				sh 'echo begin setup'
 				// set the kubectl context to the proper cluster
         withCredentials([file(credentialsId: 'jenkins-svc-acct', variable: 'serviceJson')]) {
