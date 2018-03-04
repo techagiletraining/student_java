@@ -73,7 +73,6 @@ volumes: [
 				sh """sed 's|{{IMAGE_NAME}}|${IMAGE_NAME}|' k8s-template.yaml | \
         sed 's/{{GIT_BRANCH_NAME}}/${GIT_BRANCH_NAME}/' > deployment.yaml
         """
-        sh "cat deployment.yaml"
         sh "kubectl apply -f deployment.yaml --validate=false"
 			}
 		}
@@ -83,15 +82,12 @@ volumes: [
 				sh 'echo testing deployment...'
 				sh "sleep 10"
 				def SEARCH_STRING = "student-java-${GIT_BRANCH_NAME}"
+				// TODO this is ugly and needs to be cleaned up
 				sh "kubectl get services | grep $SEARCH_STRING | awk '{ print \$4 }' > host.txt"
 				env.HOST = sh returnStdout: true, script: 'cat host.txt'
 				sh "echo ${HOST}"
-				sh "sudo apt-get update"
-				//sh "sudo apt-get -y install nodejs"
-				//sh "sudo apt-get -y install npm"
 				sh "npm install newman --global"
 				dir('newman') {
-					sh "ls"
 					sh "./run.sh ${HOST}"
 				}
 			}
