@@ -1,7 +1,7 @@
 def label = "jenkins-agent-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
-  containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'nodejs', image: 'docker pull lakoo/node-gcloud-docker', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'dgcloud', image: 'paulwoelfel/docker-gcloud', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'gradle', image: 'dodb/jenkins-java-gradle-docker-slave', command: 'cat', ttyEnabled: true)
 ],
@@ -79,9 +79,21 @@ volumes: [
 		}
 
 		stage('Integration Test'){
-			container('dgcloud') {
+			container('nodejs') {
 				sh 'echo testing deployment...'
-				//sh "./newman/run.sh ${HOST}"
+				sh "sleep 10"
+				def SEARCH_STRING = "student-java-${GIT_BRANCH_NAME}"
+				sh "kubectl get services | grep $SEARCH_STRING | awk '{ print \$4 }' > host.txt"
+				env.HOST = sh returnStdout: true, script: 'cat host.txt'
+				sh "echo ${HOST}"
+				sh "sudo apt-get update"
+				//sh "sudo apt-get -y install nodejs"
+				//sh "sudo apt-get -y install npm"
+				sh "npm install newman --global"
+				dir('newman') {
+					sh "ls"
+					sh "./run.sh ${HOST}"
+				}
 			}
 		}
 	}
