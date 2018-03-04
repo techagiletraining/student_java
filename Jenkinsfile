@@ -80,7 +80,10 @@ volumes: [
 		stage('Integration Test'){
 			container('nodejs') {
 				sh 'echo testing deployment...'
-				sh "sleep 10"
+				// This sleep is necessary as the loadbalancer deployment needs
+				// time to create the external IP address. Consider having the
+				// lb report a health status before executing this step.
+				sh "sleep 60"
 				def SEARCH_STRING = "student-java-${GIT_BRANCH_NAME}"
 				// TODO this is ugly and needs to be cleaned up
 				sh "kubectl get services | grep $SEARCH_STRING | awk '{ print \$4 }' > host.txt"
