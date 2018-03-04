@@ -15,6 +15,8 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'info.solidsoft.pitest'
 apply plugin: 'idea'
+apply plugin: 'checkstyle'
+apply plugin: "jacoco"
 
 version = '0.0.1'
 sourceCompatibility = 1.8
@@ -35,9 +37,31 @@ dependencies {
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
 }
 
+checkstyle {
+    toolVersion '7.8.1'
+    configFile file("config/checkstyle/checkstyle.xml")
+}
+checkstyleMain {
+    source ='src/main/java'
+}
+checkstyleTest {
+    source ='src/test/java'
+}
+
 pitest {
 	threads = 4
 	outputFormats = ['XML', 'HTML']
 	targetClasses = ['com.*']
 	excludedClasses = ['com.entity.*']
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/reports/jacoco")
+    }
+}
+
+build.dependsOn 'pitest'
+build.dependsOn 'checkstyleMain'
