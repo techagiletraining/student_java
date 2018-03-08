@@ -25,7 +25,8 @@ Update Java, be sure to select the java 8 opition in the alternatives step.
 ```
 sudo yum install -y java-1.8.0-openjdk-devel
 sudo alternatives --config java
-sudo yum remove -y java-1.7.0-openjdk-devel```
+sudo yum remove -y java-1.7.0-openjdk-devel
+```
 
 Pull in the latest code.
 
@@ -109,6 +110,17 @@ For example the jdoe branch will be deployed to an custom IP address that will b
 ```
 http://35.229.23.66
 http://35.229.23.66/student/1
+```
+
+### Robot Test ###
+[Robot Framework](http://robotframework.org/) is a generic test automation framework for acceptance testing and acceptance test-driven development (ATDD). It has easy-to-use tabular test data syntax and it utilizes the keyword-driven testing approach. Its testing capabilities can be extended by test libraries implemented either with Python or Java, and users can create new higher-level keywords from existing ones using the same syntax that is used for creating test cases.
+
+The `robot_setup.sh` script is used to install the robot framework along with the necessary headless browser that is needed for the CI/CD server.  When running on a local machine, it is not necessary to run in headless mode, however this has not been documented here (yet).
+
+The `ENV` var tells robot to use headless chrome or not and the result files are placed in the `output` directory.
+
+```
+robot --variable ENV:"HEADLESS" --outputdir robot/output robot/sample.robot
 ```
 
 ## Lab TODOs ##

@@ -3,6 +3,7 @@ def label = "jenkins-agent-${UUID.randomUUID().toString()}"
 podTemplate(label: label, containers: [
   containerTemplate(name: 'nodejs', image: 'lakoo/node-gcloud-docker', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'dgcloud', image: 'paulwoelfel/docker-gcloud', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'ubuntu', image: 'ubuntu:16.04', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'gradle', image: 'dodb/jenkins-java-gradle-docker-slave', command: 'cat', ttyEnabled: true)
 ],
 volumes: [
@@ -93,6 +94,13 @@ volumes: [
 				dir('newman') {
 					sh "./run.sh ${HOST}"
 				}
+			}
+		}
+
+    stage('Robot Test') {
+			container('ubuntu') {
+				sh 'echo roboting...'
+        sh "./robot/run.sh"
 			}
 		}
 
