@@ -3,9 +3,9 @@
 echo "running setup"
 
 # Install dependencies.
-#sudo apt-get -y update
-sudo yum -y install unzip
-sudo yum -y install unzip openjdk-8-jre-headless xvfb libxi6 libgconf-2-4
+sudo apt-get -y update
+sudo apt-get -y install unzip
+sudo apt-get -y install unzip openjdk-8-jre-headless xvfb libxi6 libgconf-2-4
 
 # Install Python
 sudo add-apt-repository -y ppa:fkrull/deadsnakes
