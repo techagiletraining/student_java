@@ -5,7 +5,7 @@ Suite Teardown    Close All Browsers
 
 
 *** Test Cases ***
-Headless Chrome - Create Webdriver
+Title should be Static
     ${chrome options} =     Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
     Call Method    ${chrome options}   add_argument    headless
     Call Method    ${chrome options}   add_argument    disable-gpu
