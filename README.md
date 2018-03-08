@@ -17,6 +17,16 @@ This project contains everything necessary to build and run the project with the
 Take note of the Jenkinsfile.  This repository is hooked into an automated build pipeline, meaning that every push to the remote repo will trigger the steps in the Jenkinsfile including a deployment to a [kubernetes cluster](https://cloud.google.com/kubernetes-engine/docs/).
 
 ### Setup ###
+**Note** This project requires Java 8 to compile. Check your java version and update it if necessary.
+
+`java -version`
+
+Update Java, be sure to select the java 8 opition in the alternatives step.
+```
+sudo yum install -y java-1.8.0-openjdk-devel
+sudo alternatives --config java
+sudo yum remove -y java-1.7.0-openjdk-devel```
+
 Pull in the latest code.
 
 `git clone https://github.com/techagiletraining/student_java.git`

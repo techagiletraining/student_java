@@ -101,7 +101,7 @@ volumes: [
 				sh 'echo logging ip...'
         sh 'echo ########################'
         sh "echo ${HOST}"
-        sh "echo ${HOST}/student/all"
+        sh 'echo $HOST/student/all'
         sh 'echo ########################'
 			}
 		}
