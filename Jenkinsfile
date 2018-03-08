@@ -33,19 +33,19 @@ volumes: [
 			}
 		}
 
-		stage('Build'){
+		stage('Build') {
 			container('gradle') {
 				sh './gradlew clean assemble'
 			}
 		}
 
-		stage('Unit Test'){
+		stage('Unit Test') {
 			container('gradle') {
 				sh './gradlew test'
 			}
 		}
 
-		stage('Store Build Artifact'){
+		stage('Store Build Artifact') {
 			container('dgcloud') {
 				sh 'echo storing build artifact...'
 				sh "mv build/libs/*.jar ${ARTIFACT}"
@@ -53,21 +53,21 @@ volumes: [
 			}
 		}
 
-		stage('Build Docker Image'){
+		stage('Build Docker Image') {
 			container('dgcloud') {
 				sh 'echo building image...'
 				sh "docker build -t ${IMAGE_NAME} --build-arg JAR_FILE=${ARTIFACT} ."
 			}
 		}
 
-		stage('Publish Docker Image'){
+		stage('Publish Docker Image') {
 			container('dgcloud') {
 				sh 'echo publishing image...'
 				sh "gcloud docker -- push ${IMAGE_NAME}"
 			}
 		}
 
-		stage('Deploy'){
+		stage('Deploy') {
 			container('dgcloud') {
 				sh 'echo deploying image...'
 				sh """sed 's|{{IMAGE_NAME}}|${IMAGE_NAME}|' k8s-template.yaml | \
@@ -77,7 +77,7 @@ volumes: [
 			}
 		}
 
-		stage('Integration Test'){
+		stage('Integration Test') {
 			container('nodejs') {
 				sh 'echo testing deployment...'
 				// This sleep is necessary as the loadbalancer deployment needs
@@ -93,6 +93,16 @@ volumes: [
 				dir('newman') {
 					sh "./run.sh ${HOST}"
 				}
+			}
+		}
+
+    stage('Log IP Address') {
+			container('dgcloud') {
+				sh 'echo logging ip...'
+        sh 'echo ########################'
+        sh "echo ${HOST}"
+        sh 'echo $HOST/student/all'
+        sh 'echo ########################'
 			}
 		}
 	}
