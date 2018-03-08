@@ -22,7 +22,7 @@ Pull in the latest code.
 `git clone https://github.com/techagiletraining/student_java.git`
 `cd student_java`
 
-The master branch is protected and does not allow direct commits, see the notes above on pull request, so each person needs to create a branch.  Naming recommendations are first letter of your first name and full last name. For example John Doe would be jdoe. This will ensure your branch name is compatible with the automated build pipeline.
+The master branch is protected and does not allow direct commits, see the notes above on pull request, so each person needs to create a branch.  Naming recommendations are first letter of your first name and full last name. For example John Doe would be jdoe. This will ensure your branch name is compatible with the automated build pipeline. **Note** The branch name should not include any `_` and special characters should generally be avoided.
 
 `git checkout -b jdoe`
 
@@ -94,7 +94,12 @@ Access Jenkins
 
 Notice that each branch is listed under the student_java repo.  Each will be built, tested and deployed separately based on their branch name.
 
-For example the jdoe branch will be deployed to `http://jdoe.techagile.training`.
+For example the jdoe branch will be deployed to an custom IP address that will be reported at the end of the Jenkins build following the Integration Test.
+
+```
+http://35.229.23.66
+http://35.229.23.66/student/1
+```
 
 ## Lab TODOs ##
 - fail build checkstyle
@@ -105,3 +110,4 @@ For example the jdoe branch will be deployed to `http://jdoe.techagile.training`
 - api documentation
 - custom docker images for the Jenkins build
 - publish test results for auditing
+- create dns entry for newly deployed branches (this IP is exposed but the DNS entry can take up to 5 minutes)
