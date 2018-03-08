@@ -115,12 +115,12 @@ http://35.229.23.66/student/1
 ### Robot Test ###
 [Robot Framework](http://robotframework.org/) is a generic test automation framework for acceptance testing and acceptance test-driven development (ATDD). It has easy-to-use tabular test data syntax and it utilizes the keyword-driven testing approach. Its testing capabilities can be extended by test libraries implemented either with Python or Java, and users can create new higher-level keywords from existing ones using the same syntax that is used for creating test cases.
 
-The `robot_setup.sh` script is used to install the robot framework along with the necessary headless browser that is needed for the CI/CD server.  When running on a local machine, it is not necessary to run in headless mode, however this has not been documented here (yet).
+The `robot_setup.sh` script is used to install the robot framework along with the necessary headless browser that is needed for the CI/CD server.  When running on a local machine, it is not necessary to run in headless mode, however local gui setup has not been documented here (yet).
 
 To run the robot headless you must install the headless version of Google Chrome.  **Note** The app must be running on localhost!  
 
 ```
-curl https://intoli.com/install-google-chrome.sh | bash
+./robot/robot_setup.sh
 ```
 
 The `ENV` var tells robot to use headless chrome or not and the result files are placed in the `output` directory.
