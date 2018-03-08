@@ -11,6 +11,9 @@
 .settings
 .springBeans
 
+#ignore robot output
+robot/output
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
