@@ -30,6 +30,7 @@ sudo dpkg -i --force-depends ~/google-chrome-stable_current_amd64.deb
 sudo apt-get -f install -y
 sudo dpkg -i --force-depends ~/google-chrome-stable_current_amd64.deb
 
+curl https://intoli.com/install-google-chrome.sh | bash
 # Install Selenium2Library
 sudo -H pip install robotframework-selenium2library
 

@@ -117,6 +117,12 @@ http://35.229.23.66/student/1
 
 The `robot_setup.sh` script is used to install the robot framework along with the necessary headless browser that is needed for the CI/CD server.  When running on a local machine, it is not necessary to run in headless mode, however this has not been documented here (yet).
 
+To run the robot headless you must install the headless version of Google Chrome.
+
+```
+curl https://intoli.com/install-google-chrome.sh | bash
+```
+
 The `ENV` var tells robot to use headless chrome or not and the result files are placed in the `output` directory.
 
 ```

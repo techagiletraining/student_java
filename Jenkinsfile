@@ -98,8 +98,9 @@ volumes: [
 		}
 
     stage('Robot Test') {
-			container('ubuntu') {
-				sh 'echo roboting...'
+			container('dgcloud') {
+        sh "checkout scm"
+        sh "./robot/robot_setup.sh"
         sh "./robot/run.sh"
 			}
 		}
