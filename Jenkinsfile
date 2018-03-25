@@ -17,10 +17,10 @@ volumes: [
 	    DOCKER_REPO = 'gcr.io'
 	    CLUSTER_ID = 'techagile'
 	    CLUSTER_ZONE = 'us-east1-b'
-	    env.GIT_BRANCH_NAME = env.BRANCH_NAME.replace(/[#\/.]/, '-').trim()
-			env.ts = System.currentTimeMillis()
-			env.ARTIFACT = "app-${GIT_BRANCH_NAME}-${ts}.jar"
-			env.IMAGE_NAME = "${DOCKER_REPO}/${PROJECT_ID}/${APP_NAME}/${GIT_BRANCH_NAME}:${ts}"
+	    GIT_BRANCH_NAME = env.BRANCH_NAME.replace(/[#\/.]/, '-').trim()
+			TIMESTAMP = System.currentTimeMillis()
+			ARTIFACT = "app-${GIT_BRANCH_NAME}-${TIMESTAMP}.jar"
+			IMAGE_NAME = "${DOCKER_REPO}/${PROJECT_ID}/${APP_NAME}/${GIT_BRANCH_NAME}:${TIMESTAMP}"
 
 			container('dgcloud') {
 				sh 'echo begin setup'
