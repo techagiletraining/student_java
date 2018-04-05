@@ -10,6 +10,10 @@ spring:
     password:
     driver-class-name: org.h2.Driver
 
+info:
+  app:
+    name: Spring boot java app
+    version: 1.0.0
 ---
 spring:
   profiles:
