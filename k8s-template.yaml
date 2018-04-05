@@ -17,7 +17,6 @@ spec:
       labels:
         app: student-java
         branch: {{GIT_BRANCH_NAME}}
-        ts: {{TIME_STAMP}}
     spec:
       containers:
       - name: student-java
