@@ -2,7 +2,7 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: student-java-{{GIT_BRANCH_NAME}}
+  name: student-java-{{GIT_BRANCH_NAME}}-{{BUILD_NUMBER}}
   labels:
     app: student-java
     branch: {{GIT_BRANCH_NAME}}
@@ -27,7 +27,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: student-java-{{GIT_BRANCH_NAME}}
+  name: student-java-{{GIT_BRANCH_NAME}}-{{BUILD_NUMBER}}
   labels:
     app: student-java
     branch: {{GIT_BRANCH_NAME}}
