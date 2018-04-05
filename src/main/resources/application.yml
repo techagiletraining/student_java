@@ -13,7 +13,7 @@ spring:
 info:
   app:
     name: Spring boot java app
-    version: 1.0.1
+    version: 1.0.4
 ---
 spring:
   profiles:
