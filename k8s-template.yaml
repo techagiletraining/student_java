@@ -7,7 +7,7 @@ metadata:
     app: student-java
     branch: {{GIT_BRANCH_NAME}}
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: student-java
@@ -17,6 +17,7 @@ spec:
       labels:
         app: student-java
         branch: {{GIT_BRANCH_NAME}}
+        ts: {{TIME_STAMP}}
     spec:
       containers:
       - name: student-java
