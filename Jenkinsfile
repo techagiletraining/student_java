@@ -74,6 +74,8 @@ volumes: [
 				sh """sed 's|{{IMAGE_NAME}}|${IMAGE_NAME}|' k8s-template.yaml | \
         sed 's/{{GIT_BRANCH_NAME}}/${GIT_BRANCH_NAME}/' > deployment.yaml
         """
+        sh """sed -i 's/{{BUILD_NUMBER}}/\"${BUILD_NUMBER}\"/g' deployment.yaml
+        """
         sh "kubectl apply -f deployment.yaml --validate=false"
 			}
 		}
